@@ -7,3 +7,12 @@ E:\school\Ky 8\XuLyAnh\BaoCao\EdgeDetection_Project\EdgeDetection_Gradient\EdgeD
 E:\school\Ky 8\XuLyAnh\BaoCao\EdgeDetection_Project\EdgeDetection_Gradient\EdgeDetection_Gradient\obj\Debug\EdgeDetection_Gradient.csproj.GenerateResource.Cache
 E:\school\Ky 8\XuLyAnh\BaoCao\EdgeDetection_Project\EdgeDetection_Gradient\EdgeDetection_Gradient\obj\Debug\EdgeDetection_Gradient.exe
 E:\school\Ky 8\XuLyAnh\BaoCao\EdgeDetection_Project\EdgeDetection_Gradient\EdgeDetection_Gradient\obj\Debug\EdgeDetection_Gradient.pdb
+E:\school\Ky 8\XuLyAnh\BaoCao\EdgeDetection_Project\EdgeDetection\EdgeDetection_Gradient\bin\Debug\EdgeDetection_Gradient.exe.config
+E:\school\Ky 8\XuLyAnh\BaoCao\EdgeDetection_Project\EdgeDetection\EdgeDetection_Gradient\obj\Debug\EdgeDetection_Gradient.exe
+E:\school\Ky 8\XuLyAnh\BaoCao\EdgeDetection_Project\EdgeDetection\EdgeDetection_Gradient\obj\Debug\EdgeDetection_Gradient.pdb
+E:\school\Ky 8\XuLyAnh\BaoCao\EdgeDetection_Project\EdgeDetection\EdgeDetection_Gradient\bin\Debug\EdgeDetection_Gradient.exe
+E:\school\Ky 8\XuLyAnh\BaoCao\EdgeDetection_Project\EdgeDetection\EdgeDetection_Gradient\bin\Debug\EdgeDetection_Gradient.pdb
+E:\school\Ky 8\XuLyAnh\BaoCao\EdgeDetection_Project\EdgeDetection\EdgeDetection_Gradient\obj\Debug\EdgeDetection_Gradient.csprojResolveAssemblyReference.cache
+E:\school\Ky 8\XuLyAnh\BaoCao\EdgeDetection_Project\EdgeDetection\EdgeDetection_Gradient\obj\Debug\EdgeDetection_Gradient.Form1.resources
+E:\school\Ky 8\XuLyAnh\BaoCao\EdgeDetection_Project\EdgeDetection\EdgeDetection_Gradient\obj\Debug\EdgeDetection_Gradient.Properties.Resources.resources
+E:\school\Ky 8\XuLyAnh\BaoCao\EdgeDetection_Project\EdgeDetection\EdgeDetection_Gradient\obj\Debug\EdgeDetection_Gradient.csproj.GenerateResource.Cache

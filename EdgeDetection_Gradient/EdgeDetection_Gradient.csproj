@@ -82,8 +82,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\cameraman.png" />
+    <Content Include="Images\cameraman_2.png" />
     <Content Include="Images\edge-detection.jpg" />
+    <Content Include="Images\edge-detection_2.jpg" />
     <Content Include="Images\EdgeDetectionMathematica.png" />
+    <Content Include="Images\EdgeDetectionMathematica_2.png" />
     <Content Include="Images\filter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

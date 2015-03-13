@@ -154,7 +154,7 @@
             this.txt_Nguong.Name = "txt_Nguong";
             this.txt_Nguong.Size = new System.Drawing.Size(89, 20);
             this.txt_Nguong.TabIndex = 0;
-            this.txt_Nguong.Text = "1";
+            this.txt_Nguong.Text = "100";
             // 
             // button1
             // 
