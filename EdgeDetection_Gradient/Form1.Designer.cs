@@ -66,6 +66,7 @@
             this.pic_1.Location = new System.Drawing.Point(3, 16);
             this.pic_1.Name = "pic_1";
             this.pic_1.Size = new System.Drawing.Size(285, 224);
+            this.pic_1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_1.TabIndex = 0;
             this.pic_1.TabStop = false;
             this.pic_1.DoubleClick += new System.EventHandler(this.Click_Source);
@@ -97,6 +98,7 @@
             this.pic_2.Location = new System.Drawing.Point(3, 16);
             this.pic_2.Name = "pic_2";
             this.pic_2.Size = new System.Drawing.Size(285, 224);
+            this.pic_2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_2.TabIndex = 0;
             this.pic_2.TabStop = false;
             // 

@@ -44,23 +44,51 @@ namespace EdgeDetection_Gradient
             float gx = 0, gy = 0, G;
             Operator.GetOperator(opType, out Hx, out Hy);
 
-            if(opType != OperatorType.Roberts)
+            if (opType != OperatorType.Roberts)
             {
                 for (int hang = 0; hang < s.Height; hang++)
                 {
                     for (int cot = 0; cot < s.Width; cot++)
                     {
-                        if (hang == 0 || hang == s.Height - 1 || cot == 0 || cot == s.Width)
+                        if (hang == 0 || hang == s.Height - 1 || cot == 0 || cot == s.Width - 1)
                         {
                             p2[Index(hang, cot)] = 0;
                         }
                         else
                         {
                             //Tính gradient
-                            gx = p1[Index(hang - 1, cot - 1)] * Hx[0, 0] + p1[Index(hang - 1, cot)] * Hx[1, 0] + p1[Index(hang - 1, cot + 1)] * Hx[2, 0]
-                                + p1[Index(hang + 1, cot - 1)] * Hx[0, 2] + p1[Index(hang + 1, cot)] * Hx[1, 2] + p1[Index(hang + 1, cot + 1)] * Hx[2, 2];
-                            gy = p1[Index(hang - 1, cot - 1)] * Hy[0, 0] + p1[Index(hang, cot - 1)] * Hy[0, 1] + p1[Index(hang + 1, cot - 1)] * Hy[0, 2]
-                               + p1[Index(hang - 1, cot + 1)] * Hy[2, 0] + p1[Index(hang, cot + 1)] * Hy[2, 1] + p1[Index(hang + 1, cot + 1)] * Hy[2, 2];
+                            gx = p1[Index(hang - 1, cot - 1)] * Hx[0, 0] + p1[Index(hang, cot - 1)] * Hx[1, 0] + p1[Index(hang + 1, cot - 1)] * Hx[2, 0]
+                                + p1[Index(hang - 1, cot + 1)] * Hx[0, 2] + p1[Index(hang, cot + 1)] * Hx[1, 2] + p1[Index(hang + 1, cot + 1)] * Hx[2, 2];
+                            gy = p1[Index(hang - 1, cot - 1)] * Hy[0, 0] + p1[Index(hang - 1, cot)] * Hy[0, 1] + p1[Index(hang - 1, cot + 1)] * Hy[0, 2]
+                               + p1[Index(hang + 1, cot - 1)] * Hy[2, 0] + p1[Index(hang + 1, cot)] * Hy[2, 1] + p1[Index(hang + 1, cot + 1)] * Hy[2, 2];
+
+                            G = Math.Abs(gx) + Math.Abs(gy);
+
+                            byte v = (byte)(G >= threshold ? 255 : 0);
+                            p2[Index(hang, cot)] = v;
+                            p2[Index(hang, cot) + 1] = v;
+                            p2[Index(hang, cot) + 2] = v;
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                for (int hang = 0; hang < s.Height; hang++)
+                {
+                    for (int cot = 0; cot < s.Width; cot++)
+                    {
+                        if (hang == 0 || hang == s.Height - 1 || cot == 0 || cot == s.Width - 1)
+                        {
+                            p2[Index(hang, cot)] = 0;
+                        }
+                        else
+                        {
+                            //Tính gradient
+                            gx = p1[Index(hang - 1, cot - 1)] * Hx[0, 0] + p1[Index(hang, cot)] * Hx[1, 1];
+
+                            gy = p1[Index(hang - 1, cot)] * Hy[0, 1] + p1[Index(hang, cot-1)] * Hy[1, 0];
 
                             G = Math.Abs(gx) + Math.Abs(gy);
 
