@@ -98,24 +98,9 @@
     <Content Include="Images\EdgeDetectionMathematica.png" />
     <Content Include="Images\EdgeDetectionMathematica_2.png" />
     <Content Include="Images\filter.png" />
-    <Content Include="Images\G_01.gif" />
-    <Content Include="Images\House_01.gif" />
     <Content Include="Images\I_04.bmp" />
-    <Content Include="Images\moon_01.gif" />
     <Content Include="Images\M_01.bmp" />
-    <Content Include="Images\NON_01.gif" />
-    <Content Include="Images\NON_02.gif" />
-    <Content Include="Images\NON_03.gif" />
-    <Content Include="Images\NON_04.gif" />
-    <Content Include="Images\NON_05.gif" />
-    <Content Include="Images\NON_06.gif" />
-    <Content Include="Images\NON_07.gif" />
-    <Content Include="Images\N_01.gif" />
     <Content Include="Images\ROSE.BMP" />
-    <Content Include="Images\Roto_01.gif" />
-    <Content Include="Images\Row_01.gif" />
-    <Content Include="Images\Text_01.gif" />
-    <Content Include="Images\Watch_01.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
