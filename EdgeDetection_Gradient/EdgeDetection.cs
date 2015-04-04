@@ -292,7 +292,7 @@ namespace EdgeDetection_Gradient
         }
 
         unsafe
-        public Bitmap Detect(Bitmap source, ImageType imageType, OperatorType opType, float threshold, bool giuMau)
+        public Bitmap Detect(Bitmap source, ImageType imageType, OperatorType opType, float threshold)
         {
 
             if (imageType == ImageType.Gray)

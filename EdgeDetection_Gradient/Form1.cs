@@ -45,7 +45,7 @@ namespace EdgeDetection_Gradient
             filterPicture.Image = filterImage;
             filterImage.Save(fileFilter, ImageFormat.Jpeg);
 
-            result = detect.Detect(filterImage, (ImageType)cbxType.SelectedIndex, (OperatorType)cbxOp.SelectedIndex, int.Parse(txt_Nguong.Text), giuMau.Checked);
+            result = detect.Detect(filterImage, (ImageType)cbxType.SelectedIndex, (OperatorType)cbxOp.SelectedIndex, int.Parse(txt_Nguong.Text));
             pic_2.Image = result;
             status.Text = "";
         }
