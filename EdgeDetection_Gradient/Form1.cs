@@ -78,7 +78,6 @@ namespace EdgeDetection_Gradient
 
         private void button4_Click(object sender, EventArgs e)
         {
-
             Process.Start(fileFilter);
         }
     }

@@ -19,6 +19,7 @@ namespace EdgeDetection_Gradient
 
             BitmapData s = source.LockBits(new Rectangle(0, 0, source.Width, source.Height), ImageLockMode.ReadWrite, source.PixelFormat);
             BitmapData r = result.LockBits(new Rectangle(0, 0, source.Width, source.Height), ImageLockMode.ReadWrite, source.PixelFormat);
+
             stride = s.Stride;
 
             if (imageType == ImageType.Color)
@@ -31,7 +32,7 @@ namespace EdgeDetection_Gradient
             float gx = 0, gy = 0, G;
             Operator.GetOperator(opType, out Hx, out Hy);
 
-            if (opType != OperatorType.Roberts)
+            if (opType == OperatorType.Sobel || opType == OperatorType.Prewitt)
             {
                 for (int hang = 0; hang < s.Height; hang++)
                 {
@@ -60,7 +61,7 @@ namespace EdgeDetection_Gradient
                     }
                 }
             }
-            else
+            else if (opType == OperatorType.Roberts)
             {
                 for (int hang = 0; hang < s.Height; hang++)
                 {
@@ -88,13 +89,37 @@ namespace EdgeDetection_Gradient
                     }
                 }
             }
+            else if (opType == OperatorType.LaBan_Kirsh)
+            {
+                List<int[,]> H = Operator.GetOperatorKrish();
+                for (int hang = 1; hang < s.Height - 1; hang++)
+                {
+                    for (int cot = 1; cot < s.Width - 1; cot++)
+                    {
+                        G = 0; long t = 0;
+                        for (int i = 0; i < H.Count; i++)
+                        {
+                            t = H[i][0, 0] * p1[Index(hang - 1, cot - 1)] + H[i][0, 1] * p1[Index(hang - 1, cot)] + H[i][0, 2] * p1[Index(hang - 1, cot + 1)]
+                                + H[i][1, 0] * p1[Index(hang, cot - 1)] + H[i][1, 1] * p1[Index(hang, cot)] + H[i][1, 2] * p1[Index(hang, cot + 1)]
+                                + H[i][2, 0] * p1[Index(hang + 1, cot - 1)] + H[i][2, 1] * p1[Index(hang + 1, cot)] + H[i][2, 2] * p1[Index(hang + 1, cot + 1)];
+                            if (Math.Abs(t) > G)
+                                G = Math.Abs(t);
+                        }
+                        byte v = (byte)(G >= threshold ? 255 : 0);
+                        p2[Index(hang, cot)] = v;
+                        p2[Index(hang, cot) + 1] = v;
+                        p2[Index(hang, cot) + 2] = v;
+                    }
+                }
+
+            }
 
             source.UnlockBits(s);
             result.UnlockBits(r);
             return result;
         }
-      
-     
+
+
 
         private int Index(int hang, int cot)
         {
@@ -123,7 +148,7 @@ namespace EdgeDetection_Gradient
         unsafe
         public Bitmap LocNhieu(Bitmap source, FilterType type)
         {
-           // source = (Bitmap)source.Clone();
+            // source = (Bitmap)source.Clone();
             if (type == FilterType.Khong)
                 return source;
             Bitmap result = new Bitmap(source.Width, source.Height, source.PixelFormat);
@@ -180,7 +205,7 @@ namespace EdgeDetection_Gradient
 
                         l.Sort();
 
-                        byte v = (byte) l[l.Count/2];
+                        byte v = (byte)l[l.Count / 2];
 
                         p2[Index(hang, cot)] = v;
                         p2[Index(hang, cot) + 1] = v;
