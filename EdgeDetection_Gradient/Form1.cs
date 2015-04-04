@@ -38,14 +38,16 @@ namespace EdgeDetection_Gradient
 
         private void ClickDetect(object sender, EventArgs e)
         {
-            EdgeDetection detect = new EdgeDetection();
+            status.Text = "đang xử lý";
+            EdgeDetection detect = new EdgeDetection(source);
            
             filterImage = detect.LocNhieu(source, (FilterType)cbb_LocNhieu.SelectedIndex);
             filterPicture.Image = filterImage;
             filterImage.Save(fileFilter, ImageFormat.Jpeg);
 
-            result = detect.Detect(filterImage, (ImageType)cbxType.SelectedIndex, (OperatorType)cbxOp.SelectedIndex, int.Parse(txt_Nguong.Text));
+            result = detect.Detect(filterImage, (ImageType)cbxType.SelectedIndex, (OperatorType)cbxOp.SelectedIndex, int.Parse(txt_Nguong.Text), giuMau.Checked);
             pic_2.Image = result;
+            status.Text = "";
         }
 
         private void Click_Source(object sender, EventArgs e)

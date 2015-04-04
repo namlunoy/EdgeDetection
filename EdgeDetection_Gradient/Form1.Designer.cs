@@ -46,6 +46,9 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.filterPicture = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.giuMau = new System.Windows.Forms.CheckBox();
+            this.status = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -56,6 +59,7 @@
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.filterPicture)).BeginInit();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -160,9 +164,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(749, 487);
+            this.button1.Location = new System.Drawing.Point(827, 487);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(183, 52);
+            this.button1.Size = new System.Drawing.Size(173, 52);
             this.button1.TabIndex = 8;
             this.button1.Text = "Detect";
             this.button1.UseVisualStyleBackColor = true;
@@ -171,9 +175,9 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(978, 487);
+            this.button2.Location = new System.Drawing.Point(1006, 487);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(172, 52);
+            this.button2.Size = new System.Drawing.Size(163, 52);
             this.button2.TabIndex = 9;
             this.button2.Text = "Save";
             this.button2.UseVisualStyleBackColor = true;
@@ -239,12 +243,41 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.giuMau);
+            this.groupBox8.Location = new System.Drawing.Point(755, 487);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(66, 52);
+            this.groupBox8.TabIndex = 8;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Giữ màu";
+            // 
+            // giuMau
+            // 
+            this.giuMau.AutoSize = true;
+            this.giuMau.Location = new System.Drawing.Point(25, 23);
+            this.giuMau.Name = "giuMau";
+            this.giuMau.Size = new System.Drawing.Size(15, 14);
+            this.giuMau.TabIndex = 0;
+            this.giuMau.UseVisualStyleBackColor = true;
+            // 
+            // status
+            // 
+            this.status.AutoSize = true;
+            this.status.Location = new System.Drawing.Point(966, 463);
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(0, 13);
+            this.status.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1181, 611);
+            this.Controls.Add(this.status);
+            this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.button3);
@@ -271,7 +304,10 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.filterPicture)).EndInit();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -295,6 +331,9 @@
         private System.Windows.Forms.PictureBox filterPicture;
         private System.Windows.Forms.ComboBox cbb_LocNhieu;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.CheckBox giuMau;
+        private System.Windows.Forms.Label status;
     }
 }
 
