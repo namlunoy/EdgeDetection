@@ -116,9 +116,99 @@ namespace EdgeDetection_Gradient
         private Bitmap Detect_ColorImage(Bitmap source, OperatorType opType, float threshold)
         {
             source = (Bitmap)source.Clone();
-            Bitmap result = new Bitmap(source);
+            Bitmap result = new Bitmap(source.Width, source.Height, source.PixelFormat);
 
-            return null;
+            BitmapData s = source.LockBits(new Rectangle(0, 0, source.Width, source.Height), ImageLockMode.ReadOnly, source.PixelFormat);
+            BitmapData r = result.LockBits(new Rectangle(0, 0, source.Width, source.Height), ImageLockMode.ReadOnly, source.PixelFormat);
+            stride = s.Stride;
+
+            XamHoa(s);
+
+            byte* p1 = (byte*)s.Scan0;
+            byte* p2 = (byte*)r.Scan0;
+
+            int[,] Hx, Hy;
+            float gx = 0, gy = 0, G;
+            Operator.GetOperator(opType, out Hx, out Hy);
+
+            if (opType != OperatorType.Roberts)
+            {
+                for (int hang = 0; hang < s.Height; hang++)
+                {
+                    for (int cot = 0; cot < s.Width; cot++)
+                    {
+                        if (hang == 0 || hang == s.Height - 1 || cot == 0 || cot == s.Width - 1)
+                        {
+                            p2[Index(hang, cot)] = 0;
+                        }
+                        else
+                        {
+                            //Tính gradient
+                            gx = p1[Index(hang - 1, cot - 1)] * Hx[0, 0] + p1[Index(hang, cot - 1)] * Hx[1, 0] + p1[Index(hang + 1, cot - 1)] * Hx[2, 0]
+                                + p1[Index(hang - 1, cot + 1)] * Hx[0, 2] + p1[Index(hang, cot + 1)] * Hx[1, 2] + p1[Index(hang + 1, cot + 1)] * Hx[2, 2];
+                            gy = p1[Index(hang - 1, cot - 1)] * Hy[0, 0] + p1[Index(hang - 1, cot)] * Hy[0, 1] + p1[Index(hang - 1, cot + 1)] * Hy[0, 2]
+                               + p1[Index(hang + 1, cot - 1)] * Hy[2, 0] + p1[Index(hang + 1, cot)] * Hy[2, 1] + p1[Index(hang + 1, cot + 1)] * Hy[2, 2];
+
+                            G = Math.Abs(gx) + Math.Abs(gy);
+
+                            byte v = (byte)(G >= threshold ? 255 : 0);
+                            p2[Index(hang, cot)] = v;
+                            p2[Index(hang, cot) + 1] = v;
+                            p2[Index(hang, cot) + 2] = v;
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                for (int hang = 0; hang < s.Height; hang++)
+                {
+                    for (int cot = 0; cot < s.Width; cot++)
+                    {
+                        if (hang == 0 || hang == s.Height - 1 || cot == 0 || cot == s.Width - 1)
+                        {
+                            p2[Index(hang, cot)] = 0;
+                        }
+                        else
+                        {
+                            //Tính gradient
+                            gx = p1[Index(hang - 1, cot - 1)] * Hx[0, 0] + p1[Index(hang, cot)] * Hx[1, 1];
+
+                            gy = p1[Index(hang - 1, cot)] * Hy[0, 1] + p1[Index(hang, cot - 1)] * Hy[1, 0];
+
+                            G = Math.Abs(gx) + Math.Abs(gy);
+
+                            byte v = (byte)(G >= threshold ? 255 : 0);
+                            p2[Index(hang, cot)] = v;
+                            p2[Index(hang, cot) + 1] = v;
+                            p2[Index(hang, cot) + 2] = v;
+                        }
+
+                    }
+                }
+            }
+
+            source.UnlockBits(s);
+            result.UnlockBits(r);
+            return result;
+        }
+
+        unsafe
+        void XamHoa(BitmapData bm)
+        {
+            byte* p =(byte*) bm.Scan0;
+            int offset = bm.Stride - 3*bm.Width;
+            for (int hang = 0; hang < bm.Height; hang++)
+            {
+                for (int cot = 0; cot < bm.Width; cot++)
+                {
+                    byte v = (byte)((p[0] + p[1] + p[2]) / 3);
+                    p[0] = v;
+                    p += 3;
+                }
+                p += offset;
+            }
         }
     }
 }

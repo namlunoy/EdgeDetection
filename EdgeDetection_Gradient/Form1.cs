@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +46,17 @@ namespace EdgeDetection_Gradient
             {
                 source = new Bitmap(open.FileName);
                 pic_1.Image = source;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog f = new SaveFileDialog();
+            //f.Filter = ".jpg"; 
+            if(f.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                result.Save(f.FileName,  ImageFormat.Jpeg);
+                Process.Start(f.FileName);
             }
         }
     }
