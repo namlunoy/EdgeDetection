@@ -100,7 +100,8 @@
     <Content Include="Images\filter.png" />
     <Content Include="Images\I_04.bmp" />
     <Content Include="Images\M_01.bmp" />
-    <Content Include="Images\ROSE.BMP" />
+    <Content Include="Images\ROSE.jpg" />
+    <Content Include="Images\x.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

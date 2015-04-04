@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,21 +22,29 @@ namespace EdgeDetection_Gradient
             InitializeComponent();
         }
 
-        Bitmap source, result;
-
+        Bitmap source, result, filterImage;
+        String fileInput;
+        String fileFilter = "locnhieu.jpg";
         private void Form1_Load(object sender, EventArgs e)
         {
             cbxOp.Items.AddRange(Enum.GetNames(typeof(OperatorType)));
             cbxType.Items.AddRange(Enum.GetNames(typeof(ImageType)));
+            cbb_LocNhieu.Items.AddRange(Enum.GetNames(typeof(FilterType)));
 
-            cbxOp.SelectedIndex = 0;
+            cbxOp.SelectedIndex = 1;
             cbxType.SelectedIndex = 0;
+            cbb_LocNhieu.SelectedIndex = 0;
         }
 
         private void ClickDetect(object sender, EventArgs e)
         {
             EdgeDetection detect = new EdgeDetection();
-            result = detect.Detect(source, (ImageType)cbxType.SelectedIndex, (OperatorType)cbxOp.SelectedIndex, int.Parse(txt_Nguong.Text));
+           
+            filterImage = detect.LocNhieu(source, (FilterType)cbb_LocNhieu.SelectedIndex);
+            filterPicture.Image = filterImage;
+            filterImage.Save(fileFilter, ImageFormat.Jpeg);
+
+            result = detect.Detect(filterImage, (ImageType)cbxType.SelectedIndex, (OperatorType)cbxOp.SelectedIndex, int.Parse(txt_Nguong.Text));
             pic_2.Image = result;
         }
 
@@ -44,6 +53,7 @@ namespace EdgeDetection_Gradient
             OpenFileDialog open = new OpenFileDialog();
             if (open.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                fileInput = open.FileName;
                 source = new Bitmap(open.FileName);
                 pic_1.Image = source;
             }
@@ -56,8 +66,20 @@ namespace EdgeDetection_Gradient
             if(f.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 result.Save(f.FileName,  ImageFormat.Jpeg);
+               
                 Process.Start(f.FileName);
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Process.Start(fileInput);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            Process.Start(fileFilter);
         }
     }
 }

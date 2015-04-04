@@ -9,7 +9,13 @@ namespace EdgeDetection_Gradient
     public enum ImageType
     { Gray, Color }
     public enum OperatorType
-    { Roberts, Sobel, Prewitt }
+    { Roberts, Sobel, Prewitt,LaBan_Kirsh }
+
+    public enum FilterType
+    { Khong, Arithmetic_Mean_Filter, Meadian_Filter }
+
+    public enum FilterMatrix
+    { H_9, H_10, H_16 }
 
     public static class Operator
     {
@@ -77,6 +83,32 @@ namespace EdgeDetection_Gradient
                 default:
                     break;
             }
+        }
+
+        public static int[,] GetFilterMatrix(FilterMatrix type)
+        {
+            int[,] H = new int[3, 3];
+            switch (type)
+            {
+                case FilterMatrix.H_9:
+                    H[0, 0] = 1; H[0, 1] = 1; H[0, 2] = 1;
+                    H[1, 0] = 1; H[1, 1] = 1; H[1, 2] = 1;
+                    H[2, 0] = 1; H[2, 1] = 1; H[2, 2] = 1;
+                    break;
+                case FilterMatrix.H_10:
+                    H[0, 0] = 1; H[0, 1] = 1; H[0, 2] = 1;
+                    H[1, 0] = 1; H[1, 1] = 2; H[1, 2] = 1;
+                    H[2, 0] = 1; H[2, 1] = 1; H[2, 2] = 1;
+                    break;
+                case FilterMatrix.H_16:
+                    H[0, 0] = 1; H[0, 1] = 2; H[0, 2] = 1;
+                    H[1, 0] = 2; H[1, 1] = 4; H[1, 2] = 2;
+                    H[2, 0] = 1; H[2, 1] = 2; H[2, 2] = 1;
+                    break;
+                default:
+                    break;
+            }
+            return H;
         }
     }
 }
