@@ -102,6 +102,7 @@ namespace EdgeDetection_Gradient
                             t = H[i][0, 0] * p1[Index(hang - 1, cot - 1)] + H[i][0, 1] * p1[Index(hang - 1, cot)] + H[i][0, 2] * p1[Index(hang - 1, cot + 1)]
                                 + H[i][1, 0] * p1[Index(hang, cot - 1)] + H[i][1, 1] * p1[Index(hang, cot)] + H[i][1, 2] * p1[Index(hang, cot + 1)]
                                 + H[i][2, 0] * p1[Index(hang + 1, cot - 1)] + H[i][2, 1] * p1[Index(hang + 1, cot)] + H[i][2, 2] * p1[Index(hang + 1, cot + 1)];
+                            
                             if (Math.Abs(t) > G)
                                 G = Math.Abs(t);
                         }
@@ -191,6 +192,7 @@ namespace EdgeDetection_Gradient
                     for (int cot = 1; cot < bm1.Width - 1; cot++)
                     {
                         List<int> l = new List<int>();
+
                         l.Add(p1[Index(hang - 1, cot - 1)]);
                         l.Add(p1[Index(hang - 1, cot)]);
                         l.Add(p1[Index(hang - 1, cot + 1)]);
